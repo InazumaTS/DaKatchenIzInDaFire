@@ -9,28 +9,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float MoveSpeed = 7f;
     private bool IsWalking = false;
+    [SerializeField]
+    private PlayerInput input;
     private void Update()
     {
-        Vector2 PlayerMove = new Vector2(0,0);
-
-        if(Input.GetKey(KeyCode.W))
-        {
-            PlayerMove.y = 1;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            PlayerMove.y = -1;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            PlayerMove.x = 1;
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            PlayerMove.x = -1;
-        }
-        PlayerMove = PlayerMove.normalized;
-        
+        Vector2 PlayerMove = input.GetMovementVectorNormalized();
         Vector3 ProperPlayerMove = new Vector3(PlayerMove.x,0,PlayerMove.y);
         IsWalking = ProperPlayerMove != Vector3.zero;
         transform.position += ProperPlayerMove * Time.deltaTime * MoveSpeed;
