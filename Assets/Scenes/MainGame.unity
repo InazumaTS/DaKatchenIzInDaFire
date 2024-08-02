@@ -292,6 +292,9 @@ MonoBehaviour:
   input: {fileID: 840769765}
   PlayerRadiusSize: 0.7
   PlayerHeight: 2
+  countersLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!4 &383910706
 Transform:
   m_ObjectHideFlags: 0
@@ -857,6 +860,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ClearCounter
+      objectReference: {fileID: 0}
+    - target: {fileID: 9020525914187292558, guid: d5a3c19a1eedea14593a1c038e268719,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
