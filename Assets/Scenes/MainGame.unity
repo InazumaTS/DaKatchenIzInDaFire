@@ -543,6 +543,24 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3476381060726372510, guid: d5a3c19a1eedea14593a1c038e268719,
+        type: 3}
+      propertyPath: foodItem
+      value: 
+      objectReference: {fileID: 11400000, guid: 50eebf9fb83beb445b05bedad2bc991d,
+        type: 2}
+    - target: {fileID: -3476381060726372510, guid: d5a3c19a1eedea14593a1c038e268719,
+        type: 3}
+      propertyPath: tomatoPrefab
+      value: 
+      objectReference: {fileID: 881711206772137345, guid: 9dca3fd4efe83024aa10727ac27bfa0c,
+        type: 3}
+    - target: {fileID: -3476381060726372510, guid: d5a3c19a1eedea14593a1c038e268719,
+        type: 3}
+      propertyPath: foodItemPrefab
+      value: 
+      objectReference: {fileID: 881711206772137345, guid: 9dca3fd4efe83024aa10727ac27bfa0c,
+        type: 3}
     - target: {fileID: 3494416579418350888, guid: d5a3c19a1eedea14593a1c038e268719,
         type: 3}
       propertyPath: m_LocalPosition.x
