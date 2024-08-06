@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour, I_FoodParent
     public event EventHandler<OnSelectedCounterEventArgs> onSelectedCounterChanged;
     public class OnSelectedCounterEventArgs : EventArgs
     {
-        public ClearCounter SelectedCounter;
+        public BaseCounter SelectedCounter;
     }
 
     // Update is called once per frame
@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour, I_FoodParent
     private Food food;
     private bool IsWalking = false;
     private Vector3 LastInteractedDirection;
-    private ClearCounter CounterSelected;
+    private BaseCounter CounterSelected;
 
     private void Awake()
     {
@@ -96,7 +96,7 @@ public class PlayerMovement : MonoBehaviour, I_FoodParent
             LastInteractedDirection = Move;
         if (Physics.Raycast(transform.position, LastInteractedDirection, out RaycastHit RayCastHit, InteractDistance, countersLayerMask))
         {
-            if (RayCastHit.transform.TryGetComponent(out ClearCounter ClearCo))
+            if (RayCastHit.transform.TryGetComponent(out BaseCounter ClearCo))
             {
                 if (ClearCo!=CounterSelected)
                 {
@@ -119,7 +119,7 @@ public class PlayerMovement : MonoBehaviour, I_FoodParent
     {
         return IsWalking;
     }
-    private void setSelectedCounter(ClearCounter selectedCounter)
+    private void setSelectedCounter(BaseCounter selectedCounter)
     {
         this.CounterSelected = selectedCounter;
         onSelectedCounterChanged?.Invoke(this, new OnSelectedCounterEventArgs

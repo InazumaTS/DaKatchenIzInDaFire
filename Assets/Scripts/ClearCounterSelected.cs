@@ -5,9 +5,9 @@ using UnityEngine;
 public class ClearCounterSelected : MonoBehaviour
 {
     [SerializeField]
-    ClearCounter clearCounter;
+    BaseCounter clearCounter;
     [SerializeField]
-    GameObject counterVisual;
+    GameObject[] counterVisual;
     private void Start()
     {
         PlayerMovement.Instance.onSelectedCounterChanged += Player_onSelectedCounterChanged;
@@ -27,10 +27,12 @@ public class ClearCounterSelected : MonoBehaviour
 
     private void Show()
     {
-        counterVisual.SetActive(true);
+        foreach(GameObject counter in counterVisual)
+            counter.SetActive(true);
     }
     private void Hide()
     {
-        counterVisual.SetActive(false);
+        foreach(GameObject counter in counterVisual)
+        counter.SetActive(false);
     }
 }
