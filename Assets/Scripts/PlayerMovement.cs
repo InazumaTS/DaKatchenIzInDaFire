@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEditor.Build;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, I_FoodParent
 {
     public static PlayerMovement Instance
     {
@@ -28,7 +28,10 @@ public class PlayerMovement : MonoBehaviour
     private float PlayerHeight = 2f;
     [SerializeField]
     private LayerMask countersLayerMask;
- 
+    [SerializeField]
+    private Transform foodOnWhatPoint;
+
+    private Food food;
     private bool IsWalking = false;
     private Vector3 LastInteractedDirection;
     private ClearCounter CounterSelected;
@@ -45,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
     private void Input_OnInteractAction(object sender, System.EventArgs e)
     {
         if (CounterSelected != null)
-            CounterSelected.interact();
+            CounterSelected.interact(this);
 
     }
 
@@ -125,6 +128,32 @@ public class PlayerMovement : MonoBehaviour
             SelectedCounter = selectedCounter
         });
         
+    }
+
+    public Transform GetFoodItemFollowObject()
+    {
+        return foodOnWhatPoint;
+    }
+
+    public void SetFoodItem(Food foodMem)
+    {
+        this.food = foodMem;
+    }
+
+    public Food GetFoodIteam()
+    {
+
+        return food;
+    }
+
+    public void ClearFoodItem()
+    {
+        food = null;
+    }
+
+    public bool HasFoodObject()
+    {
+        return food != null;
     }
 }
 
