@@ -31,4 +31,10 @@ public class Food : MonoBehaviour
     {
         return foodObjectParent;
     }
+
+    public void DestroyMeself()
+    {
+        foodObjectParent.ClearFoodItem();
+        Destroy(gameObject);
+    }
 }

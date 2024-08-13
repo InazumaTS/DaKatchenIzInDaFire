@@ -14,6 +14,11 @@ public class BaseCounter : MonoBehaviour, I_FoodParent
 
     }
 
+    public virtual void interactAlt(PlayerMovement player)
+    {
+
+    }
+
     public Transform GetFoodItemFollowObject()
     {
         return counterTopPrefab;

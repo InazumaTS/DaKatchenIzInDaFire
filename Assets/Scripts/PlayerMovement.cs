@@ -43,6 +43,13 @@ public class PlayerMovement : MonoBehaviour, I_FoodParent
     private void Start()
     {
         input.OnInteractAction += Input_OnInteractAction;
+        input.OnInteractAltAction += Input_OnInteractAltAction;
+    }
+
+    private void Input_OnInteractAltAction(object sender, EventArgs e)
+    {
+        if (CounterSelected != null)
+            CounterSelected.interactAlt(this);
     }
 
     private void Input_OnInteractAction(object sender, System.EventArgs e)
