@@ -111,7 +111,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   counterTopPrefab: {fileID: 4109456155058948103}
-  cutFoodObjectSCO: {fileID: 11400000, guid: c9214acb480dfd6478624527ea5d7c77, type: 2}
+  cuttingRecipeSCOArray:
+  - {fileID: 11400000, guid: e17524c71e315304fb36e688be7b2379, type: 2}
+  - {fileID: 11400000, guid: f0927a4bc1c523d42b58fef0c170927d, type: 2}
+  - {fileID: 11400000, guid: 6ec878f6da618b24aac776c338896d32, type: 2}
 --- !u!1001 &5053116433873067128
 PrefabInstance:
   m_ObjectHideFlags: 0

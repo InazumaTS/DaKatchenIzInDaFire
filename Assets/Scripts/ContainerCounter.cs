@@ -14,9 +14,7 @@ public class ContainerCounter : BaseCounter
     {
         if (!player.HasFoodObject())
         {
-            GameObject FoodGameobject = Instantiate(foodItem.prefab, counterTopPrefab);
-            FoodGameobject.transform.localPosition = Vector3.zero;
-            FoodGameobject.GetComponent<Food>().SetFoodParent(player);
+            Food.SpawnFoodItem(foodItem,player);
             OnPlayerGrabbed?.Invoke(this, EventArgs.Empty);
         }
     }

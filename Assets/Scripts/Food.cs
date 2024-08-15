@@ -37,4 +37,13 @@ public class Food : MonoBehaviour
         foodObjectParent.ClearFoodItem();
         Destroy(gameObject);
     }
+
+    public static Food SpawnFoodItem(FoodSCO foodSCO, I_FoodParent i_FoodParent)
+    {
+        GameObject FoodGameobject = Instantiate(foodSCO.prefab);
+        Food food = FoodGameobject.GetComponent<Food>();
+        
+        food.SetFoodParent(i_FoodParent);
+        return food;
+    }
 }
