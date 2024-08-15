@@ -1,9 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CuttingCounter : BaseCounter
 {
+    public event EventHandler<OnProgressBarChangedEvent> onProgressBarChanged;
+    public class OnProgressBarChangedEvent : EventArgs
+    {
+        public float progress;
+    }
+
+    public event EventHandler OnCutAnimation;
+    
     [SerializeField]
     private CuttingSCO[] cuttingRecipeSCOArray;
 
@@ -18,6 +27,10 @@ public class CuttingCounter : BaseCounter
                 {
                     player.GetFoodIteam().SetFoodParent(this);
                     cuttingCount = 0;
+                    onProgressBarChanged?.Invoke(this, new OnProgressBarChangedEvent
+                    {
+                        progress = (float)cuttingCount / GetCuttingSCOwithInput(GetFoodIteam().GetFoodSco()).cutMaxim
+                    });
                 }
             }
             else
@@ -44,8 +57,14 @@ public class CuttingCounter : BaseCounter
         if(HasFoodObject() && HasRecipeInput(GetFoodIteam().GetFoodSco()))
         {
             cuttingCount++;
+            OnCutAnimation?.Invoke(this, EventArgs.Empty);
+            onProgressBarChanged?.Invoke(this, new OnProgressBarChangedEvent
+            {
+                progress = (float)cuttingCount / GetCuttingSCOwithInput(GetFoodIteam().GetFoodSco()).cutMaxim
+            });
+
             CuttingSCO cuttingSco = GetCuttingSCOwithInput(GetFoodIteam().GetFoodSco());
-            if (cuttingCount > cuttingSco.cutMaxim)
+            if (cuttingCount >= cuttingSco.cutMaxim)
             {
                 FoodSCO OutputFood = GetOutputForInput(GetFoodIteam().GetFoodSco());
                 GetFoodIteam().DestroyMeself();
