@@ -46,4 +46,18 @@ public class Food : MonoBehaviour
         food.SetFoodParent(i_FoodParent);
         return food;
     }
+
+    public bool TryGetPlate(out PlateKitchenObject plate)
+    {
+        if (this is PlateKitchenObject)
+        {
+            plate = this as PlateKitchenObject;
+            return true;
+        }
+        else
+        {
+            plate = null;
+            return false;
+        }
+    }
 }

@@ -3,13 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CuttingCounter : BaseCounter
+public class CuttingCounter : BaseCounter, I_HasProgress
 {
-    public event EventHandler<OnProgressBarChangedEvent> onProgressBarChanged;
-    public class OnProgressBarChangedEvent : EventArgs
-    {
-        public float progress;
-    }
+    public event EventHandler<I_HasProgress.OnProgressBarChangedEvent> onProgressBarChanged;
 
     public event EventHandler OnCutAnimation;
     
@@ -27,7 +23,7 @@ public class CuttingCounter : BaseCounter
                 {
                     player.GetFoodIteam().SetFoodParent(this);
                     cuttingCount = 0;
-                    onProgressBarChanged?.Invoke(this, new OnProgressBarChangedEvent
+                    onProgressBarChanged?.Invoke(this, new I_HasProgress.OnProgressBarChangedEvent
                     {
                         progress = (float)cuttingCount / GetCuttingSCOwithInput(GetFoodIteam().GetFoodSco()).cutMaxim
                     });
@@ -42,7 +38,11 @@ public class CuttingCounter : BaseCounter
         {
             if (player.HasFoodObject())
             {
-
+                if (player.GetFoodIteam().TryGetPlate(out PlateKitchenObject plateKitchenObject))
+                {
+                    if (plateKitchenObject.TryAddIngredient(GetFoodIteam().GetFoodSco()))
+                        GetFoodIteam().DestroyMeself();
+                }
             }
             else
             {
@@ -58,7 +58,7 @@ public class CuttingCounter : BaseCounter
         {
             cuttingCount++;
             OnCutAnimation?.Invoke(this, EventArgs.Empty);
-            onProgressBarChanged?.Invoke(this, new OnProgressBarChangedEvent
+            onProgressBarChanged?.Invoke(this, new I_HasProgress.OnProgressBarChangedEvent
             {
                 progress = (float)cuttingCount / GetCuttingSCOwithInput(GetFoodIteam().GetFoodSco()).cutMaxim
             });
