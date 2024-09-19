@@ -38,4 +38,9 @@ public class PlateKitchenObject : Food
         else
             return false;
     }
+
+    public List<FoodSCO> GetKitchenObjectSO()
+    {
+        return FoodSCOList; 
+    }
 }
